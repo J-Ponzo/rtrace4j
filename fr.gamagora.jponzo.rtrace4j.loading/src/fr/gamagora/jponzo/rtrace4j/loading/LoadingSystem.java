@@ -6,12 +6,13 @@ import fr.gamagora.jponzo.rtrace4j.model.ModelService;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ICamera;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ILight;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IPlane;
-import fr.gamagora.jponzo.rtrace4j.model.interfaces.IScene;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ISphere;
 import fr.gamagora.jponzo.rtrace4j.utils.impl.IOUtils;
 import fr.gamagora.jponzo.rtrace4j.utils.impl.MathUtils;
 import fr.gamagora.jponzo.rtrace4j.utils.impl.Vec3;
 import fr.gamagora.jponzo.rtrace4j.utils.interfaces.IVec3;
+import fr.jponzo.gamagora.rtrace4j.scene.SceneManager;
+import fr.jponzo.gamagora.rtrace4j.scene.interfaces.IScene;
 
 public class LoadingSystem {
 	public static int maxTreeDepth = 5;
@@ -23,16 +24,16 @@ public class LoadingSystem {
 	public static IScene loadStubScene() {
 		IScene scene = 
 //				loadManuScene();
-//				loadRandomSphereScene();
+				loadRandomSphereScene();
 //				loadMultiSphereScene();
-				loadGoldTempleScene();
+//				loadGoldTempleScene();
 //				loadSimpleScene();
 		//		loadSimpleMirrorScene();
 		return scene;
 	}
 
 	private static IScene loadManuScene() {
-		IScene scene = ModelService.creatScene();
+		IScene scene = SceneManager.createScene();
 
 		ISphere sphere;
 		IPlane plane;
@@ -168,7 +169,7 @@ public class LoadingSystem {
 		float cubeSize = 10;
 		int nbSpheres = 1000;
 
-		IScene scene = ModelService.creatScene();
+		IScene scene = SceneManager.createScene();
 
 		ISphere sphere;
 		ILight light;
@@ -224,7 +225,7 @@ public class LoadingSystem {
 		int cubeEdgeSize = 5;
 		IVec3 sphereCloudCenter = new Vec3(0, 0, -10);
 
-		IScene scene = ModelService.creatScene();
+		IScene scene = SceneManager.createScene();
 
 		ISphere sphere;
 		ILight light;
@@ -341,7 +342,7 @@ public class LoadingSystem {
 	}
 
 	private static IScene loadSimpleScene() {
-		IScene scene = ModelService.creatScene();
+		IScene scene = SceneManager.createScene();
 
 		ISphere sphere;
 		IPlane plane;
@@ -446,7 +447,7 @@ public class LoadingSystem {
 	}
 
 	private static IScene loadSimpleMirrorScene() {
-		IScene scene = ModelService.creatScene();
+		IScene scene = SceneManager.createScene();
 
 		ISphere sphere;
 		IPlane plane;
@@ -551,7 +552,7 @@ public class LoadingSystem {
 	}
 
 	private static IScene loadGoldTempleScene () {
-		IScene scene = ModelService.creatScene();
+		IScene scene = SceneManager.createScene();
 
 		ISphere sphere;
 		IPlane plane;

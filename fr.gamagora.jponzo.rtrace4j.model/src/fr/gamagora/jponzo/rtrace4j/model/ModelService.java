@@ -6,18 +6,20 @@ import java.lang.reflect.Parameter;
 
 import javax.naming.OperationNotSupportedException;
 
+import fr.gamagora.jponzo.rtrace4j.model.impl.BoundingHierarchy;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Camera;
+import fr.gamagora.jponzo.rtrace4j.model.impl.InterInfo;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Light;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Plane;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Ray;
-import fr.gamagora.jponzo.rtrace4j.model.impl.Scene;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Sphere;
+import fr.gamagora.jponzo.rtrace4j.model.interfaces.IBoundingHierarchy;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ICamera;
+import fr.gamagora.jponzo.rtrace4j.model.interfaces.IInterInfo;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ILight;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IPlane;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IPrimitive;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IRay;
-import fr.gamagora.jponzo.rtrace4j.model.interfaces.IScene;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ISphere;
 import fr.gamagora.jponzo.rtrace4j.utils.impl.Vec3;
 import fr.gamagora.jponzo.rtrace4j.utils.interfaces.IVec3;
@@ -35,8 +37,7 @@ public class ModelService {
 	private static final String DEFAULT_SPHERE_NAME_RADICAL = "Sphere";
 	private static final String DEFAULT_PLANE_NAME_RADICAL = "Plane";
 	private static final String DEFAULT_LIGHT_NAME_RADICAL = "Light";
-	
-	private static IScene scene;
+	private static final String DEFAULT_BHIERA_NAME_RADICAL = "BHiera";
 	
 	public static IVec3 createVec3 (float x, float y, float z) {
 		return new Vec3(x, y, z);
@@ -48,10 +49,6 @@ public class ModelService {
 	
 	public static IRay createRay(IVec3 o, IVec3 d) {
 		return new Ray(o, d);
-	}
-	
-	public static IScene creatScene() {
-		return new Scene();
 	}
 	
 	public static ISphere creatSphere(IVec3 c, float r) {
@@ -72,12 +69,14 @@ public class ModelService {
 		return light;
 	}
 
-	public static IScene getScene() {
-		return scene;
+	public static IBoundingHierarchy createBHierarchy() {
+		IBoundingHierarchy boundingHierarchy = new BoundingHierarchy("");
+		boundingHierarchy.setName(DEFAULT_BHIERA_NAME_RADICAL + "_" + System.identityHashCode(boundingHierarchy));
+		return boundingHierarchy;
 	}
-
-	public static void setScene(IScene scene) {
-		ModelService.scene = scene;
+	
+	public static IInterInfo createInterInfo(IPrimitive primitive, IVec3 interPt, float t) throws OperationNotSupportedException {
+		return new InterInfo(primitive, interPt, t);
 	}
 	
 	/**

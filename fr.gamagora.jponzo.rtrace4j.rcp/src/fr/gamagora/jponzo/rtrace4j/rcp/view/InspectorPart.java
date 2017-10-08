@@ -28,8 +28,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import fr.gamagora.jponzo.rtrace4j.model.interfaces.IScene;
 import fr.gamagora.jponzo.rtrace4j.utils.impl.ReflectionUtils;
+import fr.jponzo.gamagora.rtrace4j.scene.interfaces.IScene;
 
 public class InspectorPart {
 	private DataBindingContext m_bindingContext;

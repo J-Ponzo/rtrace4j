@@ -30,9 +30,10 @@ import fr.gamagora.jponzo.rtrace4j.model.ModelService;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ICamera;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ILight;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IPrimitive;
-import fr.gamagora.jponzo.rtrace4j.model.interfaces.IScene;
 import fr.gamagora.jponzo.rtrace4j.rendering.RenderingSystem;
 import fr.gamagora.jponzo.rtrace4j.utils.interfaces.IVec3;
+import fr.jponzo.gamagora.rtrace4j.scene.SceneManager;
+import fr.jponzo.gamagora.rtrace4j.scene.interfaces.IScene;
 
 public class EditorPart {
 	public static String ID = "fr.gamagora.jponzo.rtrace4j.rcp.part.editor";
@@ -359,8 +360,8 @@ public class EditorPart {
 		if (dialog.open() == Dialog.OK) {
 			IScene loadedScene = LoadingSystem.loadStubScene();
 			loadedScene.init(LoadingSystem.maxTreeDepth);
-			ModelService.setScene(loadedScene);
-			bindScene(ModelService.getScene());
+			SceneManager.setScene(loadedScene);
+			bindScene(SceneManager.getScene());
 		}
 	}
 

@@ -32,6 +32,7 @@
       <plugin id="fr.gamagora.jponzo.rtrace4j.rcp"/>
       <plugin id="fr.gamagora.jponzo.rtrace4j.rendering"/>
       <plugin id="fr.gamagora.jponzo.rtrace4j.utils"/>
+      <plugin id="fr.jponzo.gamagora.rtrace4j.scene"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="javax.xml"/>

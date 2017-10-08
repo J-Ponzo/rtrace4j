@@ -3,8 +3,8 @@ package fr.gamagora.jponzo.rtrace4j.rendering;
 import fr.gamagora.jponzo.rtrace4j.model.ModelService;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ICamera;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IRay;
-import fr.gamagora.jponzo.rtrace4j.model.interfaces.IScene;
 import fr.gamagora.jponzo.rtrace4j.utils.interfaces.IVec3;
+import fr.jponzo.gamagora.rtrace4j.scene.interfaces.IScene;
 
 /**
  * This tasks compute 1/nbThreads pixels of the actual image. In order to smooth the complexity 

@@ -3,7 +3,6 @@ package fr.gamagora.jponzo.rtrace4j.model.impl;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IBoundingBox;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IRay;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ISphere;
-import fr.gamagora.jponzo.rtrace4j.utils.impl.Vec3;
 import fr.gamagora.jponzo.rtrace4j.utils.impl.VectorUtils;
 import fr.gamagora.jponzo.rtrace4j.utils.interfaces.IVec3;
 

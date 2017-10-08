@@ -5,5 +5,7 @@ Bundle-SymbolicName: fr.gamagora.jponzo.rtrace4j.rendering
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: fr.gamagora.jponzo.rtrace4j.model,
- fr.gamagora.jponzo.rtrace4j.utils
+ fr.gamagora.jponzo.rtrace4j.utils,
+ fr.jponzo.gamagora.rtrace4j.scene,
+ fr.gamagora.jponzo.rtrace4j.collision
 Export-Package: fr.gamagora.jponzo.rtrace4j.rendering

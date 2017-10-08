@@ -4,3 +4,6 @@ Bundle-Name: Collision
 Bundle-SymbolicName: fr.gamagora.jponzo.rtrace4j.collision
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: fr.gamagora.jponzo.rtrace4j.model,
+ fr.gamagora.jponzo.rtrace4j.utils
+Export-Package: fr.gamagora.jponzo.rtrace4j.collision

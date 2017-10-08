@@ -2,24 +2,22 @@ package fr.gamagora.jponzo.rtrace4j.rendering;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 import javax.naming.OperationNotSupportedException;
 
+import fr.gamagora.jponzo.rtrace4j.collision.CollisionSystem;
 import fr.gamagora.jponzo.rtrace4j.model.ModelService;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ICamera;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IInterInfo;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ILight;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IPrimitive;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IRay;
-import fr.gamagora.jponzo.rtrace4j.model.interfaces.IScene;
-import fr.gamagora.jponzo.rtrace4j.model.interfaces.ISphere;
 import fr.gamagora.jponzo.rtrace4j.utils.impl.DebugUtils;
 import fr.gamagora.jponzo.rtrace4j.utils.impl.MathUtils;
-import fr.gamagora.jponzo.rtrace4j.utils.impl.Vec3;
 import fr.gamagora.jponzo.rtrace4j.utils.impl.VectorUtils;
 import fr.gamagora.jponzo.rtrace4j.utils.interfaces.IVec3;
+import fr.jponzo.gamagora.rtrace4j.scene.SceneManager;
+import fr.jponzo.gamagora.rtrace4j.scene.interfaces.IScene;
 
 public class RenderingSystem {
 	public static int nbThreads = 8;
@@ -43,7 +41,7 @@ public class RenderingSystem {
 		List<Thread> threads = new ArrayList<Thread>();
 		List<CastRaysTask> runnables = new ArrayList<CastRaysTask>();
 
-		IScene scene = ModelService.getScene();
+		IScene scene = SceneManager.getScene();
 		ICamera camera = scene.getCamera();
 		int w = camera.getWidth();
 		int h = camera.getHeight(); 
@@ -109,7 +107,7 @@ public class RenderingSystem {
 		//Look for intersection
 		IInterInfo intersect;
 		try {
-			intersect = scene.intersect(ray);
+			intersect = CollisionSystem.intersect(ray);
 			if (intersect != null) {
 				IPrimitive primitive = intersect.getPrimitive();
 				float diffVal = primitive.getDiffVal();

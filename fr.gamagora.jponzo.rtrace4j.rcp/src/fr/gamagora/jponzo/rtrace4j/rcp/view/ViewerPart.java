@@ -15,8 +15,9 @@ import org.eclipse.swt.widgets.Display;
 
 import fr.gamagora.jponzo.rtrace4j.model.ModelService;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ICamera;
-import fr.gamagora.jponzo.rtrace4j.model.interfaces.IScene;
 import fr.gamagora.jponzo.rtrace4j.utils.impl.IOUtils;
+import fr.jponzo.gamagora.rtrace4j.scene.SceneManager;
+import fr.jponzo.gamagora.rtrace4j.scene.interfaces.IScene;
 
 public class ViewerPart {
 	public static String ID = "fr.gamagora.jponzo.rtrace4j.rcp.part.viewer";
@@ -34,9 +35,9 @@ public class ViewerPart {
 		canvas.setBounds(0, 0, 1024, 1024);
 		canvas.addPaintListener(new PaintListener() {
 			public void paintControl(PaintEvent e) {
-				IScene scene = ModelService.getScene();
+				IScene scene = SceneManager.getScene();
 				if (scene == null) return;
-				ICamera camera = ModelService.getScene().getCamera();
+				ICamera camera = SceneManager.getScene().getCamera();
 				if (camera == null) return;
 				
 				displayImageOnCanvas(e);
@@ -55,7 +56,7 @@ public class ViewerPart {
 
         // Set up the offscreen gc
         GC gcImage = new GC(image);
-        ICamera camera = ModelService.getScene().getCamera();
+        ICamera camera = SceneManager.getScene().getCamera();
         for (int i = 0; i < camera.getHeight(); i++) {
 			for (int j = 0; j < camera.getWidth(); j++) {
 				gcImage.setForeground(new Color(Display.getCurrent(), 
