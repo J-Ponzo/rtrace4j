@@ -1,9 +1,14 @@
-package fr.gamagora.jponzo.rtrace4j.model.interfaces;
+package fr.jponzo.gamagora.rtrace4j.scene.interfaces;
 
 import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
+import fr.gamagora.jponzo.rtrace4j.model.interfaces.ICamera;
+import fr.gamagora.jponzo.rtrace4j.model.interfaces.IInterInfo;
+import fr.gamagora.jponzo.rtrace4j.model.interfaces.ILight;
+import fr.gamagora.jponzo.rtrace4j.model.interfaces.IPrimitive;
+import fr.gamagora.jponzo.rtrace4j.model.interfaces.IRay;
 import fr.gamagora.jponzo.rtrace4j.utils.interfaces.IVec3;
 
 public interface IScene {
@@ -33,14 +38,6 @@ public interface IScene {
 	 * @param light the given light 
 	 */
 	void addLight(ILight light);
-
-	/**
-	 * Find the most close intersection between the given ray and the scene
-	 * @param ray the given ray
-	 * @return the most close intersection or null if there is not
-	 * @throws OperationNotSupportedException 
-	 */
-	IInterInfo intersect(IRay ray) throws OperationNotSupportedException;
 
 	/**
 	 * Check if the fromPt is visible from the toPt in this scene

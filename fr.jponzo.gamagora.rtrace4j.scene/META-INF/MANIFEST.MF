@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Scene
+Bundle-SymbolicName: fr.jponzo.gamagora.rtrace4j.scene
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: fr.gamagora.jponzo.rtrace4j.model,
+ fr.gamagora.jponzo.rtrace4j.collision,
+ fr.gamagora.jponzo.rtrace4j.utils
+Export-Package: fr.jponzo.gamagora.rtrace4j.scene,
+ fr.jponzo.gamagora.rtrace4j.scene.interfaces
