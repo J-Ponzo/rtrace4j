@@ -40,7 +40,7 @@ public interface IScene {
 	 * @return the most close intersection or null if there is not
 	 * @throws OperationNotSupportedException 
 	 */
-	IInterInfo intersectWith(IRay ray) throws OperationNotSupportedException;
+	IInterInfo intersect(IRay ray) throws OperationNotSupportedException;
 
 	/**
 	 * Check if the fromPt is visible from the toPt in this scene
