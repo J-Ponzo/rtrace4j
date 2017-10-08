@@ -109,7 +109,7 @@ public class RenderingSystem {
 		//Look for intersection
 		IInterInfo intersect;
 		try {
-			intersect = scene.findClosestIntersect(ray);
+			intersect = scene.intersectWith(ray);
 			if (intersect != null) {
 				IPrimitive primitive = intersect.getPrimitive();
 				float diffVal = primitive.getDiffVal();
