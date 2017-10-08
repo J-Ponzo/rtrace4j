@@ -111,7 +111,7 @@ public class Scene implements IScene {
 	}
 
 	@Override
-	public IInterInfo findClosestIntersect(IRay ray) throws OperationNotSupportedException {
+	public IInterInfo intersect(IRay ray) throws OperationNotSupportedException {
 		IInterInfo nonBoxableInter = findClosestNonBoxableIntersect(ray);
 		IInterInfo boxableInter = biTree.intersect(ray);
 		
@@ -156,7 +156,7 @@ public class Scene implements IScene {
 		IRay lightRay = new Ray(
 				toPt,
 				VectorUtils.computeNormalizedDirection(toPt, fromPt));
-		IInterInfo lightIntersect = this.findClosestIntersect(lightRay);
+		IInterInfo lightIntersect = this.intersect(lightRay);
 
 		if (lightIntersect != null) {
 			Float kInter = lightRay.evaluateParameter(fromPt);
