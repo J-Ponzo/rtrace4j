@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Model
+Bundle-SymbolicName: fr.gamagora.jponzo.rtrace4j.model
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.gamagora.jponzo.rtrace4j.model,
+ fr.gamagora.jponzo.rtrace4j.model.interfaces
+Require-Bundle: fr.gamagora.jponzo.rtrace4j.utils

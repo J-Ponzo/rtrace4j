@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Utils
+Bundle-SymbolicName: fr.gamagora.jponzo.rtrace4j.utils
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.gamagora.jponzo.rtrace4j.utils.impl,
+ fr.gamagora.jponzo.rtrace4j.utils.interfaces
