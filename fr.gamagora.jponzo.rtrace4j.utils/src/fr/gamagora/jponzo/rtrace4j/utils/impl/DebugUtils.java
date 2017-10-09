@@ -10,10 +10,10 @@ import fr.gamagora.jponzo.rtrace4j.utils.interfaces.IVec3;
 public class DebugUtils {
 	private static boolean DEBUG = false;
 	private static IVec3 BLACK_COLOR = new Vec3(0, 0, 0);
-	private static IVec3 WHITE_COLOR = new Vec3(255, 255, 255);
-	private static IVec3 RED_COLOR = new Vec3(255, 0, 0);
-	private static IVec3 GREEN_COLOR = new Vec3(0, 255, 0);
-	private static IVec3 BLUE_COLOR = new Vec3(0, 0, 255);
+	private static IVec3 WHITE_COLOR = new Vec3(1, 1, 1);
+	private static IVec3 RED_COLOR = new Vec3(1, 0, 0);
+	private static IVec3 GREEN_COLOR = new Vec3(0, 1, 0);
+	private static IVec3 BLUE_COLOR = new Vec3(0, 0, 1);
 	
 	/**
 	 * @return the shadow debug color instead of black on debug mode

@@ -55,6 +55,9 @@ public class CastRaysTask implements Runnable {
 					pixelColor = pixelColor.sum(rayColor);
 				}
 				imgTable[i][j] = pixelColor.mult(1f / RenderingSystem.rayPerPixel);
+				imgTable[i][j].setX((float) Math.pow(imgTable[i][j].getX(), 1 / 2.2));
+				imgTable[i][j].setY((float) Math.pow(imgTable[i][j].getY(), 1 / 2.2));
+				imgTable[i][j].setZ((float) Math.pow(imgTable[i][j].getZ(), 1 / 2.2));
 				
 				nbRay++;
 

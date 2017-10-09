@@ -80,14 +80,17 @@ public class MathUtils {
 	 */
 	public static IVec3[] getBasisFromAxis(IVec3 axis) {
 		float sign = Math.signum(axis.getZ());
-		float a = -1f / sign + axis.getZ();
+		if (sign == 0) {
+			sign = 1;
+		}
+		float a = -1f / (sign + axis.getZ());
 		float b = axis.getX() * axis.getY() * a;
 		
 
 		IVec3[] basis = new IVec3[3];
 		basis[0] = axis.normalized();
-		basis[1] = new Vec3(1f + sign * axis.getX() * axis.getX() * a, sign * b, -sign * axis.getX()).normalized();
-		basis[2] = new Vec3(b, sign + axis.getY() * axis.getY() * a, -axis.getY()).normalized();
+		basis[1] = new Vec3(1f + sign * axis.getX() * axis.getX() * a, sign * b, -sign * axis.getX());
+		basis[2] = new Vec3(b, sign + axis.getY() * axis.getY() * a, -axis.getY());
 
 		return basis;
 	}

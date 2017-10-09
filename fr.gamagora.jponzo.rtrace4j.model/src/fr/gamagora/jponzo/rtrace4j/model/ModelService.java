@@ -8,15 +8,19 @@ import javax.naming.OperationNotSupportedException;
 
 import fr.gamagora.jponzo.rtrace4j.model.impl.BoundingHierarchy;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Camera;
+import fr.gamagora.jponzo.rtrace4j.model.impl.DiffuseMaterial;
 import fr.gamagora.jponzo.rtrace4j.model.impl.InterInfo;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Light;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Plane;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Ray;
+import fr.gamagora.jponzo.rtrace4j.model.impl.SpecularMaterial;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Sphere;
+import fr.gamagora.jponzo.rtrace4j.model.impl.TransparentMaterial;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IBoundingHierarchy;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ICamera;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IInterInfo;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ILight;
+import fr.gamagora.jponzo.rtrace4j.model.interfaces.IMaterial;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IPlane;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IPrimitive;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IRay;
@@ -73,6 +77,18 @@ public class ModelService {
 		IBoundingHierarchy boundingHierarchy = new BoundingHierarchy("");
 		boundingHierarchy.setName(DEFAULT_BHIERA_NAME_RADICAL + "_" + System.identityHashCode(boundingHierarchy));
 		return boundingHierarchy;
+	}
+	
+	public static IMaterial createDiffuseMaterial() {
+		return new DiffuseMaterial();
+	}
+	
+	public static IMaterial createSpecularMaterial() {
+		return new SpecularMaterial();
+	}
+	
+	public static IMaterial createTransparentMaterial() {
+		return new TransparentMaterial();
 	}
 	
 	public static IInterInfo createInterInfo(IPrimitive primitive, IVec3 interPt, float t) throws OperationNotSupportedException {
