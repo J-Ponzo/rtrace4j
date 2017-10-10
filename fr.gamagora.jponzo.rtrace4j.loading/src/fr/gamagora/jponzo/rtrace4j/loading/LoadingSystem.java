@@ -23,11 +23,12 @@ public class LoadingSystem {
 	 */
 	public static IScene loadStubScene() {
 		IScene scene = 
-//				loadManuScene();
-//				loadRandomSphereScene();
-//				loadGoldTempleScene();
-//				loadSimpleScene();
-				loadSimpleMirrorScene();
+				loadSimpleFresnelScene();
+		//				loadManuScene();
+		//				loadRandomSphereScene();
+		//				loadGoldTempleScene();
+		//				loadSimpleScene();
+		//				loadSimpleMirrorScene();
 		return scene;
 	}
 
@@ -214,7 +215,7 @@ public class LoadingSystem {
 		diffGoldMat.setAlbedo(ModelService.createVec3(0.8f, 0.6f, 0.1f));
 		IMaterial diffBlueMat = ModelService.createDiffuseMaterial();
 		diffBlueMat.setAlbedo(ModelService.createVec3(0f, 0f, 0.5f));
-		
+
 		IVec3 origin;
 		IVec3 normal;
 		IVec3 center;
@@ -250,6 +251,111 @@ public class LoadingSystem {
 		sphere = ModelService.creatSphere(center, radius);
 		sphere.setName("Gold_Sphere");
 		sphere.setMaterial(diffGoldMat);
+		scene.addPrimitive(sphere);
+
+		//Add plane Floor
+		origin = ModelService.createVec3(10, -20, 0);
+		normal = ModelService.createVec3(0, 1, 0);
+		plane = ModelService.createPlane(origin, normal);
+		plane.setName("Floor");
+		plane.setMaterial(diffWhiteMat);
+		scene.addPrimitive(plane);
+
+		//Add plane Ceil
+		origin = ModelService.createVec3(0, 100, 0);
+		normal = ModelService.createVec3(0, -1, 0);
+		plane = ModelService.createPlane(origin, normal);
+		plane.setName("Ceil");
+		plane.setMaterial(diffPinkMat);
+		scene.addPrimitive(plane);
+
+		//Add plane Left wall
+		origin = ModelService.createVec3(-50, 0, 0);
+		normal = ModelService.createVec3(1, 0, 0);
+		plane = ModelService.createPlane(origin, normal);
+		plane.setName("Left_Wall");
+		plane.setMaterial(diffBlueMat);
+		scene.addPrimitive(plane);
+
+		//Add plane right wall
+		origin = ModelService.createVec3(50, 100, 0);
+		normal = ModelService.createVec3(-1, 0, 0);
+		plane = ModelService.createPlane(origin, normal);
+		plane.setName("Right_Wall");
+		plane.setMaterial(diffYellowMat);
+		scene.addPrimitive(plane);
+
+		//Add plane Back Wall
+		origin = ModelService.createVec3(0, 0, -100);
+		normal = ModelService.createVec3(0, 0, 1);
+		plane = ModelService.createPlane(origin, normal);
+		plane.setName("Back_Wall");
+		plane.setMaterial(diffCyanMat);
+		scene.addPrimitive(plane);
+
+		return scene;
+	}
+
+	private static IScene loadSimpleFresnelScene() {
+		IScene scene = SceneManager.createScene();
+
+		ISphere sphere;
+		IPlane plane;
+		ILight light;
+		IMaterial diffWhiteMat = ModelService.createDiffuseMaterial();
+		IMaterial diffPinkMat = ModelService.createDiffuseMaterial();
+		diffPinkMat.setAlbedo(ModelService.createVec3(0.5f,  0, 0.5f));
+		IMaterial diffYellowMat = ModelService.createDiffuseMaterial();
+		diffYellowMat.setAlbedo(ModelService.createVec3(0.5f,  0.5f, 0f));
+		IMaterial diffCyanMat = ModelService.createDiffuseMaterial();
+		diffCyanMat.setAlbedo(ModelService.createVec3(0f,  0.5f, 0.5f));
+		IMaterial fresnelMat = ModelService.createFresnelMaterial();
+		IMaterial diffBlueMat = ModelService.createDiffuseMaterial();
+		diffBlueMat.setAlbedo(ModelService.createVec3(0f, 0f, 0.5f));
+
+		IVec3 origin;
+		IVec3 normal;
+		IVec3 center;
+		IVec3 position;
+		IVec3 intensity;
+		float radius;
+
+		//Set Camera
+		int width = 1024;
+		int height = 1024;
+		float fov = (int) (60 * (Math.PI / 180.0));
+		position = ModelService.createVec3(0, 20, 120);
+		ICamera camera = ModelService.createCamera(width, height, fov, position);
+		scene.setCamera(camera);
+
+		//Add Light 1
+		position = ModelService.createVec3(10, 50, -5);
+		intensity = ModelService.createVec3(3000, 3000, 3000);
+		light = ModelService.createLight(position, intensity, 5);
+		light.setName("Light_1");
+		scene.addLight(light);
+
+		//Add Light 2
+		position = ModelService.createVec3(-10, 50, -5);
+		intensity = ModelService.createVec3(3000, 3000, 3000);
+		light = ModelService.createLight(position, intensity, 5);
+		light.setName("Light_2");
+		scene.addLight(light);
+
+		//Add Fresnel Sphere
+		center = ModelService.createVec3(0, 0, -10);
+		radius = 15;
+		sphere = ModelService.creatSphere(center, radius);
+		sphere.setName("Fresnel_Sphere");
+		sphere.setMaterial(fresnelMat);
+		scene.addPrimitive(sphere);
+
+		//Add Fresnel Sphere
+		center = ModelService.createVec3(5, 0, -30);
+		radius = 15;
+		sphere = ModelService.creatSphere(center, radius);
+		sphere.setName("Ref_Sphere");
+		sphere.setMaterial(diffWhiteMat);
 		scene.addPrimitive(sphere);
 
 		//Add plane Floor
@@ -390,170 +496,170 @@ public class LoadingSystem {
 
 		return scene;
 	}
-//
-//	private static IScene loadGoldTempleScene () {
-//		IScene scene = SceneManager.createScene();
-//
-//		ISphere sphere;
-//		IPlane plane;
-//		ILight light;
-//		IVec3 origin;
-//		IVec3 normal;
-//		IVec3 center;
-//		IVec3 position;
-//		IVec3 intensity;
-//		float radius;
-//
-//		//Set Camera
-//		int width = 1024;
-//		int height = 1024;
-//		float fov = (int) (60 * (Math.PI / 180.0));
-//		position = ModelService.createVec3(25, 0, 150);
-//		ICamera camera = ModelService.createCamera(width, height, fov, position);
-//		scene.setCamera(camera);
-//
-//		//Add Light
-//		position = ModelService.createVec3(-45, 50, -55);
-//		intensity = ModelService.createVec3(10000, 10000, 10000);
-//		light = ModelService.createLight(position, intensity, 5f);
-//		light.setName("Light_1");
-//		scene.addLight(light);
-//
-//		//Add Light
-//		position = ModelService.createVec3(45, 50, -55);
-//		intensity = ModelService.createVec3(10000, 10000, 10000);
-//		light = ModelService.createLight(position, intensity, 5f);
-//		light.setName("Light_2");
-//		scene.addLight(light);
-//
-//		//Add Light
-//		position = ModelService.createVec3(45, 50, -25);
-//		intensity = ModelService.createVec3(10000, 10000, 10000);
-//		light = ModelService.createLight(position, intensity, 5f);
-//		light.setName("Light_3");
-//		scene.addLight(light);
-//
-//		//Add Light
-//		position = ModelService.createVec3(-45, 50, -25);
-//		intensity = ModelService.createVec3(10000, 10000, 10000);
-//		light = ModelService.createLight(position, intensity, 5f);
-//		light.setName("Light_4");
-//		scene.addLight(light);
-//
-//		//Add sphere S1
-//		center = ModelService.createVec3(0, 23, -35);
-//		radius = 30;
-//		sphere = ModelService.creatSphere(center, radius);
-//		sphere.setColor(ModelService.createVec3(0, 1, 0));
-//		sphere.setDiffVal(0.0f);
-//		sphere.setSpecVal(0.25f);
-//		sphere.setTransVal(0.75f);
-//		sphere.setName("Big_Sphere");
-//		scene.addPrimitive(sphere);
-//
-//		//Add Red Sphere
-//		center = ModelService.createVec3(20, 10, 0);
-//		radius = 15;
-//		sphere = ModelService.creatSphere(center, radius);
-//		sphere.setColor(ModelService.createVec3(1, 0, 0));
-//		sphere.setDiffVal(0.4f);
-//		sphere.setSpecVal(0.0f);
-//		sphere.setTransVal(0.6f);
-//		sphere.setRefractIndex(1.25f);
-//		sphere.setName("Red_Sphere");
-//		scene.addPrimitive(sphere);
-//
-//		//Add Green Sphere
-//		center = ModelService.createVec3(0, 45, 0);
-//		radius = 15;
-//		sphere = ModelService.creatSphere(center, radius);
-//		sphere.setColor(ModelService.createVec3(0, 1, 0));
-//		sphere.setDiffVal(0.4f);
-//		sphere.setSpecVal(0.0f);
-//		sphere.setTransVal(0.6f);
-//		sphere.setRefractIndex(1.4f);
-//		sphere.setName("Green_Sphere");
-//		scene.addPrimitive(sphere);
-//
-//		//Add Blue Sphere
-//		center = ModelService.createVec3(-20, 10, 0);
-//		radius = 15;
-//		sphere = ModelService.creatSphere(center, radius);
-//		sphere.setColor(ModelService.createVec3(0, 0, 1));
-//		sphere.setDiffVal(0.4f);
-//		sphere.setSpecVal(0.0f);
-//		sphere.setTransVal(0.6f);
-//		sphere.setRefractIndex(1.4f);
-//		sphere.setName("Blue_Sphere");
-//		scene.addPrimitive(sphere);
-//
-//		//Add Gold Sphere
-//		center = ModelService.createVec3(0, 40, -120);
-//		radius = 50;
-//		sphere = ModelService.creatSphere(center, radius);
-//		sphere.setColor(ModelService.createVec3(0.8f, 0.6f, 0.1f));
-//		sphere.setDiffVal(0.75f);
-//		sphere.setSpecVal(0.25f);
-//		sphere.setTransVal(0.0f);
-//		sphere.setRefractIndex(1.4f);
-//		sphere.setName("Gold_Sphere");
-//		scene.addPrimitive(sphere);
-//
-//		//Add plane Floor
-//		origin = ModelService.createVec3(10, -20, 0);
-//		normal = ModelService.createVec3(0, 1, 0);
-//		plane = ModelService.createPlane(origin, normal);
-//		plane.setColor(ModelService.createVec3(0.5f, 0, 0));
-//		plane.setDiffVal(0.9f);
-//		plane.setSpecVal(0.1f);
-//		plane.setTransVal(0.0f);
-//		plane.setName("Floor");
-//		scene.addPrimitive(plane);
-//
-//		//Add plane Ceil
-//		origin = ModelService.createVec3(0, 100, 0);
-//		normal = ModelService.createVec3(0, -1, 0);
-//		plane = ModelService.createPlane(origin, normal);
-//		plane.setColor(ModelService.createVec3(0.5f, 0, 0.5f));
-//		plane.setDiffVal(0.85f);
-//		plane.setSpecVal(0.15f);
-//		plane.setTransVal(0.0f);
-//		plane.setName("Ceil");
-//		scene.addPrimitive(plane);
-//
-//		//Add plane Left wall
-//		origin = ModelService.createVec3(-50, 0, 0);
-//		normal = ModelService.createVec3(1, 0, 0);
-//		plane = ModelService.createPlane(origin, normal);
-//		plane.setColor(ModelService.createVec3(0, 0, 0.5f));
-//		plane.setDiffVal(0.8f);
-//		plane.setSpecVal(0.2f);
-//		plane.setTransVal(0.0f);
-//		plane.setName("Left_Wall");
-//		scene.addPrimitive(plane);
-//
-//		//Add plane right wall
-//		origin = ModelService.createVec3(50, 100, 0);
-//		normal = ModelService.createVec3(-1, 0, 0);
-//		plane = ModelService.createPlane(origin, normal);
-//		plane.setColor(ModelService.createVec3(0.5f, 0.5f, 0));
-//		plane.setDiffVal(0.0f);
-//		plane.setSpecVal(1f);
-//		plane.setTransVal(0.0f);
-//		plane.setName("Right_Wall");
-//		scene.addPrimitive(plane);
-//
-//		//Add plane Back Wall
-//		origin = ModelService.createVec3(0, 0, -100);
-//		normal = ModelService.createVec3(0, 0, 1);
-//		plane = ModelService.createPlane(origin, normal);
-//		plane.setColor(ModelService.createVec3(0, 0.5f, 0.5f));
-//		plane.setDiffVal(0.8f);
-//		plane.setSpecVal(0.2f);
-//		plane.setTransVal(0.0f);
-//		plane.setName("Back_Wall");
-//		scene.addPrimitive(plane);
-//
-//		return scene;
-//	}
+	//
+	//	private static IScene loadGoldTempleScene () {
+	//		IScene scene = SceneManager.createScene();
+	//
+	//		ISphere sphere;
+	//		IPlane plane;
+	//		ILight light;
+	//		IVec3 origin;
+	//		IVec3 normal;
+	//		IVec3 center;
+	//		IVec3 position;
+	//		IVec3 intensity;
+	//		float radius;
+	//
+	//		//Set Camera
+	//		int width = 1024;
+	//		int height = 1024;
+	//		float fov = (int) (60 * (Math.PI / 180.0));
+	//		position = ModelService.createVec3(25, 0, 150);
+	//		ICamera camera = ModelService.createCamera(width, height, fov, position);
+	//		scene.setCamera(camera);
+	//
+	//		//Add Light
+	//		position = ModelService.createVec3(-45, 50, -55);
+	//		intensity = ModelService.createVec3(10000, 10000, 10000);
+	//		light = ModelService.createLight(position, intensity, 5f);
+	//		light.setName("Light_1");
+	//		scene.addLight(light);
+	//
+	//		//Add Light
+	//		position = ModelService.createVec3(45, 50, -55);
+	//		intensity = ModelService.createVec3(10000, 10000, 10000);
+	//		light = ModelService.createLight(position, intensity, 5f);
+	//		light.setName("Light_2");
+	//		scene.addLight(light);
+	//
+	//		//Add Light
+	//		position = ModelService.createVec3(45, 50, -25);
+	//		intensity = ModelService.createVec3(10000, 10000, 10000);
+	//		light = ModelService.createLight(position, intensity, 5f);
+	//		light.setName("Light_3");
+	//		scene.addLight(light);
+	//
+	//		//Add Light
+	//		position = ModelService.createVec3(-45, 50, -25);
+	//		intensity = ModelService.createVec3(10000, 10000, 10000);
+	//		light = ModelService.createLight(position, intensity, 5f);
+	//		light.setName("Light_4");
+	//		scene.addLight(light);
+	//
+	//		//Add sphere S1
+	//		center = ModelService.createVec3(0, 23, -35);
+	//		radius = 30;
+	//		sphere = ModelService.creatSphere(center, radius);
+	//		sphere.setColor(ModelService.createVec3(0, 1, 0));
+	//		sphere.setDiffVal(0.0f);
+	//		sphere.setSpecVal(0.25f);
+	//		sphere.setTransVal(0.75f);
+	//		sphere.setName("Big_Sphere");
+	//		scene.addPrimitive(sphere);
+	//
+	//		//Add Red Sphere
+	//		center = ModelService.createVec3(20, 10, 0);
+	//		radius = 15;
+	//		sphere = ModelService.creatSphere(center, radius);
+	//		sphere.setColor(ModelService.createVec3(1, 0, 0));
+	//		sphere.setDiffVal(0.4f);
+	//		sphere.setSpecVal(0.0f);
+	//		sphere.setTransVal(0.6f);
+	//		sphere.setRefractIndex(1.25f);
+	//		sphere.setName("Red_Sphere");
+	//		scene.addPrimitive(sphere);
+	//
+	//		//Add Green Sphere
+	//		center = ModelService.createVec3(0, 45, 0);
+	//		radius = 15;
+	//		sphere = ModelService.creatSphere(center, radius);
+	//		sphere.setColor(ModelService.createVec3(0, 1, 0));
+	//		sphere.setDiffVal(0.4f);
+	//		sphere.setSpecVal(0.0f);
+	//		sphere.setTransVal(0.6f);
+	//		sphere.setRefractIndex(1.4f);
+	//		sphere.setName("Green_Sphere");
+	//		scene.addPrimitive(sphere);
+	//
+	//		//Add Blue Sphere
+	//		center = ModelService.createVec3(-20, 10, 0);
+	//		radius = 15;
+	//		sphere = ModelService.creatSphere(center, radius);
+	//		sphere.setColor(ModelService.createVec3(0, 0, 1));
+	//		sphere.setDiffVal(0.4f);
+	//		sphere.setSpecVal(0.0f);
+	//		sphere.setTransVal(0.6f);
+	//		sphere.setRefractIndex(1.4f);
+	//		sphere.setName("Blue_Sphere");
+	//		scene.addPrimitive(sphere);
+	//
+	//		//Add Gold Sphere
+	//		center = ModelService.createVec3(0, 40, -120);
+	//		radius = 50;
+	//		sphere = ModelService.creatSphere(center, radius);
+	//		sphere.setColor(ModelService.createVec3(0.8f, 0.6f, 0.1f));
+	//		sphere.setDiffVal(0.75f);
+	//		sphere.setSpecVal(0.25f);
+	//		sphere.setTransVal(0.0f);
+	//		sphere.setRefractIndex(1.4f);
+	//		sphere.setName("Gold_Sphere");
+	//		scene.addPrimitive(sphere);
+	//
+	//		//Add plane Floor
+	//		origin = ModelService.createVec3(10, -20, 0);
+	//		normal = ModelService.createVec3(0, 1, 0);
+	//		plane = ModelService.createPlane(origin, normal);
+	//		plane.setColor(ModelService.createVec3(0.5f, 0, 0));
+	//		plane.setDiffVal(0.9f);
+	//		plane.setSpecVal(0.1f);
+	//		plane.setTransVal(0.0f);
+	//		plane.setName("Floor");
+	//		scene.addPrimitive(plane);
+	//
+	//		//Add plane Ceil
+	//		origin = ModelService.createVec3(0, 100, 0);
+	//		normal = ModelService.createVec3(0, -1, 0);
+	//		plane = ModelService.createPlane(origin, normal);
+	//		plane.setColor(ModelService.createVec3(0.5f, 0, 0.5f));
+	//		plane.setDiffVal(0.85f);
+	//		plane.setSpecVal(0.15f);
+	//		plane.setTransVal(0.0f);
+	//		plane.setName("Ceil");
+	//		scene.addPrimitive(plane);
+	//
+	//		//Add plane Left wall
+	//		origin = ModelService.createVec3(-50, 0, 0);
+	//		normal = ModelService.createVec3(1, 0, 0);
+	//		plane = ModelService.createPlane(origin, normal);
+	//		plane.setColor(ModelService.createVec3(0, 0, 0.5f));
+	//		plane.setDiffVal(0.8f);
+	//		plane.setSpecVal(0.2f);
+	//		plane.setTransVal(0.0f);
+	//		plane.setName("Left_Wall");
+	//		scene.addPrimitive(plane);
+	//
+	//		//Add plane right wall
+	//		origin = ModelService.createVec3(50, 100, 0);
+	//		normal = ModelService.createVec3(-1, 0, 0);
+	//		plane = ModelService.createPlane(origin, normal);
+	//		plane.setColor(ModelService.createVec3(0.5f, 0.5f, 0));
+	//		plane.setDiffVal(0.0f);
+	//		plane.setSpecVal(1f);
+	//		plane.setTransVal(0.0f);
+	//		plane.setName("Right_Wall");
+	//		scene.addPrimitive(plane);
+	//
+	//		//Add plane Back Wall
+	//		origin = ModelService.createVec3(0, 0, -100);
+	//		normal = ModelService.createVec3(0, 0, 1);
+	//		plane = ModelService.createPlane(origin, normal);
+	//		plane.setColor(ModelService.createVec3(0, 0.5f, 0.5f));
+	//		plane.setDiffVal(0.8f);
+	//		plane.setSpecVal(0.2f);
+	//		plane.setTransVal(0.0f);
+	//		plane.setName("Back_Wall");
+	//		scene.addPrimitive(plane);
+	//
+	//		return scene;
+	//	}
 }

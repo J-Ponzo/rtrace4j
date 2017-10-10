@@ -9,6 +9,7 @@ import javax.naming.OperationNotSupportedException;
 import fr.gamagora.jponzo.rtrace4j.model.impl.BoundingHierarchy;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Camera;
 import fr.gamagora.jponzo.rtrace4j.model.impl.DiffuseMaterial;
+import fr.gamagora.jponzo.rtrace4j.model.impl.FresnelMaterial;
 import fr.gamagora.jponzo.rtrace4j.model.impl.InterInfo;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Light;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Plane;
@@ -89,6 +90,10 @@ public class ModelService {
 	
 	public static IMaterial createTransparentMaterial() {
 		return new TransparentMaterial();
+	}
+	
+	public static IMaterial createFresnelMaterial() {
+		return new FresnelMaterial();
 	}
 	
 	public static IInterInfo createInterInfo(IPrimitive primitive, IVec3 interPt, float t) throws OperationNotSupportedException {

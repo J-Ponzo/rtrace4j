@@ -40,7 +40,7 @@ public class VectorUtils {
 		float alpha = (float) (ICrossn / (Math.tan(teta)) * Math.signum(IDotn) - IDotn);
 		IVec3 S = I.sum(n.mult(alpha));
 		
-		return S;
+		return S.normalized();
 	}
 	
 	/**
