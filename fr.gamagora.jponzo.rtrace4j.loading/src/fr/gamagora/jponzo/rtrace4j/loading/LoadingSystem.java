@@ -24,10 +24,10 @@ public class LoadingSystem {
 	public static IScene loadStubScene() {
 		IScene scene = 
 //				loadManuScene();
-				loadRandomSphereScene();
+//				loadRandomSphereScene();
 //				loadGoldTempleScene();
 //				loadSimpleScene();
-//				loadSimpleMirrorScene();
+				loadSimpleMirrorScene();
 		return scene;
 	}
 

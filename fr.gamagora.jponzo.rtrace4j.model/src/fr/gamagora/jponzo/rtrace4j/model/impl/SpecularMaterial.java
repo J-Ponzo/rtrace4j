@@ -17,7 +17,12 @@ public class SpecularMaterial extends Material implements IMaterial {
 		IVec3 reflectedDir = VectorUtils.computeReflectedRay(inRay.getDirection(), n);
 		IRay outRay = ModelService.createRay(displacedIntersect, reflectedDir);
 		
-		ISampleInfo sampleInfo = new SampleInfo(1f, outRay);
+		ISampleInfo sampleInfo = new SampleInfo(0.7f, outRay);
 		return sampleInfo;
+	}
+
+	@Override
+	public float f(IVec3 inDir, IVec3 normal) {
+		return 0f;
 	}
 }
