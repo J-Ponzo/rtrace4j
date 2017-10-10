@@ -170,7 +170,8 @@ public class RenderingSystem {
 			IVec3 L = VectorUtils.computeDirection(I, randPt).normalized();
 			float d2 = VectorUtils.computeDistance(I, randPt);
 			d2 *= d2;
-			float G = n.dot(L) / d2;
+			IMaterial mat = intersect.getPrimitive().getMaterial();
+			float G = mat.f(L, n) / d2;
 			if (G < 0) {	//means light comes from the wrong side of the side of the face
 				G = 0;
 			}

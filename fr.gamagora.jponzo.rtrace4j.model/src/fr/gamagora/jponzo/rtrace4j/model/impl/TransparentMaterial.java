@@ -30,8 +30,13 @@ public class TransparentMaterial extends Material implements IMaterial {
 		}
 		IRay outRay = ModelService.createRay(displacedIntersect, refractedDir);
 		
-		ISampleInfo sampleInfo = new SampleInfo(1f, outRay);
+		ISampleInfo sampleInfo = new SampleInfo(0.9f, outRay);
 		return sampleInfo;
+	}
+
+	@Override
+	public float f(IVec3 inDir, IVec3 normal) {
+		return 0f;
 	}
 
 }

@@ -24,9 +24,14 @@ public class DiffuseMaterial extends Material implements IMaterial {
 		IRay outRay = ModelService.createRay(inter.getPoint(), dir);
 		
 		float pdf = (float) (Math.sqrt(r2) / Math.PI);
-		float contribution = (float) (inter.getNormal().dot(dir) / Math.PI) / pdf;
+		float contribution = (float) (f(dir, inter.getNormal()) / Math.PI) / pdf;
 		
 		ISampleInfo sampleInfo = new SampleInfo(contribution, outRay);
 		return sampleInfo;
+	}
+
+	@Override
+	public float f(IVec3 inDir, IVec3 normal) {
+		return inDir.dot(normal);
 	}	
 }
