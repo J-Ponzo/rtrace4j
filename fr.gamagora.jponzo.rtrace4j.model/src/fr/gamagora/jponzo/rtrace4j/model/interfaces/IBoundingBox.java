@@ -30,4 +30,16 @@ public interface IBoundingBox extends IEntity {
 	 * @param contents the boxable cloud to adapt to
 	 */
 	void updateBouningBox(List<IBoxable> contents);
+
+	IPlane getFarPlane();
+
+	IPlane getNearPlane();
+
+	IPlane getBottomPlane();
+
+	IPlane getTopPlane();
+
+	IPlane getRightPlane();
+
+	IPlane getLeftPlane();
 }

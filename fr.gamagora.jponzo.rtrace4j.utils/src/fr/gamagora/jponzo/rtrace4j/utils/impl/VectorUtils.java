@@ -6,7 +6,7 @@ public class VectorUtils {
 	/**
 	 * Epsilon : An infinitesimally close to zero value
 	 */
-	public static float EPS = 0.00001f;
+	public static float EPS = 0.001f;
 	
 	/**
 	 * Compute the reflected ray direction given the input ray and the normal to the surface

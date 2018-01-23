@@ -8,6 +8,7 @@ import javax.naming.OperationNotSupportedException;
 
 import fr.gamagora.jponzo.rtrace4j.model.impl.BoundingHierarchy;
 import fr.gamagora.jponzo.rtrace4j.model.impl.Camera;
+import fr.gamagora.jponzo.rtrace4j.model.impl.Cube;
 import fr.gamagora.jponzo.rtrace4j.model.impl.DiffuseMaterial;
 import fr.gamagora.jponzo.rtrace4j.model.impl.FresnelMaterial;
 import fr.gamagora.jponzo.rtrace4j.model.impl.InterInfo;
@@ -19,6 +20,7 @@ import fr.gamagora.jponzo.rtrace4j.model.impl.Sphere;
 import fr.gamagora.jponzo.rtrace4j.model.impl.TransparentMaterial;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IBoundingHierarchy;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ICamera;
+import fr.gamagora.jponzo.rtrace4j.model.interfaces.ICube;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IInterInfo;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.ILight;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IMaterial;
@@ -40,6 +42,7 @@ import fr.gamagora.jponzo.rtrace4j.utils.interfaces.IVec3;
  */
 public class ModelService {
 	private static final String DEFAULT_SPHERE_NAME_RADICAL = "Sphere";
+	private static final String DEFAULT_CUBE_NAME_RADICAL = "Cube";
 	private static final String DEFAULT_PLANE_NAME_RADICAL = "Plane";
 	private static final String DEFAULT_LIGHT_NAME_RADICAL = "Light";
 	private static final String DEFAULT_BHIERA_NAME_RADICAL = "BHiera";
@@ -54,6 +57,12 @@ public class ModelService {
 	
 	public static IRay createRay(IVec3 o, IVec3 d) {
 		return new Ray(o, d);
+	}
+	
+	public static ICube creatCube(IVec3 c, float xSize, float ySize, float zSize) {
+		ICube cube = new Cube("", c, xSize, ySize, zSize);
+		cube.setName(DEFAULT_CUBE_NAME_RADICAL + "_" + System.identityHashCode(cube));
+		return cube;
 	}
 	
 	public static ISphere creatSphere(IVec3 c, float r) {

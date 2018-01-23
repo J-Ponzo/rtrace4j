@@ -73,6 +73,36 @@ public class BoundingBox extends Entity implements IBoundingBox {
 		normal = new Vec3(0, 0, -1);
 		farPlane = new Plane(this.getName() + "_" + FAR_PLANE_NAME, origin, normal);
 	}
+	
+	@Override
+	public IPlane getLeftPlane() {
+		return leftPlane;
+	}
+
+	@Override
+	public IPlane getRightPlane() {
+		return rightPlane;
+	}
+
+	@Override
+	public IPlane getTopPlane() {
+		return topPlane;
+	}
+
+	@Override
+	public IPlane getBottomPlane() {
+		return bottomPlane;
+	}
+
+	@Override
+	public IPlane getNearPlane() {
+		return nearPlane;
+	}
+
+	@Override
+	public IPlane getFarPlane() {
+		return farPlane;
+	}
 
 	@Override
 	public float getLeftBound() {
