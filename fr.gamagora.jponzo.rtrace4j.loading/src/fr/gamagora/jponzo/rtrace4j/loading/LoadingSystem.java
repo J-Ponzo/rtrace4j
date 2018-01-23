@@ -234,27 +234,27 @@ public class LoadingSystem {
 		scene.addPrimitive(cube);
 
 		//Left Statue 1
-		center = ModelService.createVec3(-30, 35, 20);
+		center = ModelService.createVec3(-30, 40, 20);
 		createStatue(scene, center, transMat, diffGreyMat, diffYellowStoneMat);
 
 		//Left Statue 2
-		center = ModelService.createVec3(-30, 35, 45);
+		center = ModelService.createVec3(-30, 40, 45);
 		createStatue(scene, center, transMat, diffGreyMat, diffYellowStoneMat);
 
 		//Left Statue 3
-		center = ModelService.createVec3(-30, 35, 70);
+		center = ModelService.createVec3(-30, 40, 70);
 		createStatue(scene, center, transMat, diffGreyMat, diffYellowStoneMat);
 
 		//Right Statue 1
-		center = ModelService.createVec3(30, 35, 20);
+		center = ModelService.createVec3(30, 40, 20);
 		createStatue(scene, center, transMat, diffGreyMat, diffYellowStoneMat);
 
 		//Right Statue 2
-		center = ModelService.createVec3(30, 35, 45);
+		center = ModelService.createVec3(30, 40, 45);
 		createStatue(scene, center, transMat, diffGreyMat, diffYellowStoneMat);
 
 		//Right Statue 3
-		center = ModelService.createVec3(30, 35, 70);
+		center = ModelService.createVec3(30, 40, 70);
 		createStatue(scene, center, transMat, diffGreyMat, diffYellowStoneMat);
 
 		return scene;
@@ -271,7 +271,7 @@ public class LoadingSystem {
 		scene.addPrimitive(cube);
 
 		//Statue 1 Sphere 1
-		IVec3 basesphere1Center = ModelService.createVec3(center.getX(), center.getY() + 25f, center.getZ());
+		IVec3 basesphere1Center = ModelService.createVec3(center.getX(), center.getY() + 30f, center.getZ());
 		cube = ModelService.creatCube(basesphere1Center, 17.5f, 10f, 17.5f);
 		cube.setName("Base");
 		cube.setMaterial(diffYellowStoneMat);
@@ -292,7 +292,7 @@ public class LoadingSystem {
 		scene.addPrimitive(sphere);
 
 		//Statue 1 Sphere 1
-		IVec3 topsphere1Center = ModelService.createVec3(center.getX(), center.getY() - 20f, center.getZ());
+		IVec3 topsphere1Center = ModelService.createVec3(center.getX(), center.getY() - 25f, center.getZ());
 		cube = ModelService.creatCube(topsphere1Center, 17.5f, 10f, 17.5f);
 		cube.setName("Top");
 		cube.setMaterial(diffYellowStoneMat);
