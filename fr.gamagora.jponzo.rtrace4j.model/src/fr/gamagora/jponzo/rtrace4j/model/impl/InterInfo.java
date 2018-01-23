@@ -2,6 +2,7 @@ package fr.gamagora.jponzo.rtrace4j.model.impl;
 
 import javax.naming.OperationNotSupportedException;
 
+import fr.gamagora.jponzo.rtrace4j.model.interfaces.ICube;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IInterInfo;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IPlane;
 import fr.gamagora.jponzo.rtrace4j.model.interfaces.IPrimitive;
@@ -25,6 +26,8 @@ public class InterInfo implements IInterInfo {
 			this.normal = VectorUtils.computeNormalizedDirection(sphere.getCenter(), intersectPt);
 		} else if (primitive instanceof IPlane) {
 			this.normal = ((IPlane) primitive).getNormal();
+		} else if (primitive instanceof ICube) {
+			this.normal = ((ICube) primitive).getNormalAt(intersectPt);
 		} else {
 			throw new OperationNotSupportedException();
 		}

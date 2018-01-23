@@ -12,8 +12,8 @@ public class TransparentMaterial extends Material implements IMaterial {
 
 	@Override
 	public ISampleInfo sample(IRay inRay, IInterInfo inter) {
-		float n1 = 1;			//Air refraction
-		float n2 = 1.1f;		//Water
+		float n1 = 1.3f;			//Air refraction
+		float n2 = 1f;		//Water
 
 		IVec3 displacedIntersect;
 		IVec3 intersectPt = inter.getPoint();
@@ -21,12 +21,12 @@ public class TransparentMaterial extends Material implements IMaterial {
 
 		//Detect in/out hits
 		IVec3 refractedDir;
-		if (n.dot(inRay.getDirection()) > 0) {
+		if (n.dot(inRay.getDirection()) < 0) {
 			refractedDir = VectorUtils.computeRefractedRay(inRay.getDirection().normalized(), n, n1, n2);
-			displacedIntersect = intersectPt.sum(n.mult(VectorUtils.EPS * 1000));
+			displacedIntersect = intersectPt.sum(n.mult(-VectorUtils.EPS * 1000));
 		} else {
 			refractedDir = VectorUtils.computeRefractedRay(inRay.getDirection().normalized(), n, n2, n1);
-			displacedIntersect = intersectPt.sum(n.mult(-VectorUtils.EPS * 1000));
+			displacedIntersect = intersectPt.sum(n.mult(VectorUtils.EPS * 1000));
 		}
 		IRay outRay = ModelService.createRay(displacedIntersect, refractedDir);
 		
