@@ -107,7 +107,7 @@ public class Vec3 implements IVec3 {
 	public IVec3 normalized() {
 		//Check if this vector is (0, 0, 0)
 		float norm2 = this.norm2();
-		if (Math.abs(norm2) < VectorUtils.EPS) {
+		if (Math.abs(norm2) < VectorUtils.EPS / 10f) {
 			return null;
 		}
 		
